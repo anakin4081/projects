@@ -129,11 +129,15 @@ def sequence():
     player2 = AI
     game = Game(player1(),player2())
     game.settings()
-    with open("NACSettings.jke","r") as key:
-        x = []
-        x.extend(key.read())
-        key1,key2,key3,key4,key5,key6,key7,key8,key9 = x[0],x[2],x[4],x[6],x[8],x[10],x[12],x[14],x[16]
-        keys = [key1,key2,key3,key4,key5,key6,key7,key8,key9]
+    if os.path.exists("NACSettings.jke"):
+        with open("NACSettings.jke","r") as key:
+            x = []
+            x.extend(key.read())
+            key1,key2,key3,key4,key5,key6,key7,key8,key9 = x[0],x[2],x[4],x[6],x[8],x[10],x[12],x[14],x[16]
+            keys = [key1,key2,key3,key4,key5,key6,key7,key8,key9]
+    else:
+        print("settings not found using default\n\n")
+        keys = ["1","2","3","4","5","6","7","8","9"]
     game.play_games(player1,player2,keys)
 
 sequence()
